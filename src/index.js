@@ -3,7 +3,7 @@ const {Client, Intents} = require('discord.js');
 
 require('dotenv').config()
 
-const token = process.env.TOKEN;
+const token = "ODc4NzEyNzE1ODM5OTQ2ODIy.YSFK_Q.FmFQQLxVfPubA1-iqsVqdH4K7Pk";
 const client = new Client({ intents: ["GUILDS", "GUILD_MESSAGES", "DIRECT_MESSAGES", "GUILD_MESSAGE_REACTIONS"] });
 
 
