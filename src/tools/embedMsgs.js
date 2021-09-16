@@ -23,10 +23,16 @@ const ticket = new MessageEmbed()
 const chatMessage = new MessageEmbed()
     .setTitle('pessoa:')
 
+const exitMsg = new MessageEmbed()
+    .setColor('RED')
+    .setTitle('chat finalizado')
+    .setDescription('saindo do chat...')
+
 module.exports = {
     embedNewChat,
     connected,
     joinedChat,
     ticket,
-    chatMessage
+    chatMessage,
+    exitMsg
 }
