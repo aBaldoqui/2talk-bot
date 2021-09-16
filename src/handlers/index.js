@@ -31,7 +31,7 @@ const reactionHandler = async (reaction, usr) => {
 }
 
 const messageHandler = async (msg) => {
-    if (msg.author.bot || usr.system) return;
+    if (msg.author.bot) return;
 
     if (msg.content === "clear") {
         if(msg.author.id !== "376165182126161931" && msg.author.id !== "840005128744075284") return;
