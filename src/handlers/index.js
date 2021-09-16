@@ -11,7 +11,7 @@ const innit = async (client) => {
         const chan = a.channels.cache.find(channel => channel.name === "ticket")
         if (chan) {
             await chan.bulkDelete(100);//more than 100
-            const _msg = await chan.send('pegue o ticket aqui');
+            const _msg = await chan.send({embeds:[embedMessages.ticket]});
             _msg.react('🎫')
         } else {
             console.log(`sem canal de ticket em ${a.name}`)
@@ -26,7 +26,7 @@ const innit = async (client) => {
 
 const reactionHandler = async (reaction, usr) => {
     if (usr.bot || usr.system) return;
-    if (reaction.message.author.id !== '878712715839946822' || reaction.message.content !== 'pegue o ticket aqui') return;
+    if (reaction.message.author.id !== '878712715839946822' || reaction.message.content !== 'pegue seu ticket aqui') return;
     await newTicket(reaction,usr);
 }
 

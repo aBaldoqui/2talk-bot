@@ -1,4 +1,5 @@
 const { Message } = require('discord.js')
+const embedsMSGS = require('./embedMsgs')
 
 let isLocked = null;
 
@@ -34,12 +35,12 @@ const newTicket = async (reaction, usr) => {
                     {
                         id: _id,
                         allow: ['VIEW_CHANNEL', 'SEND_MESSAGES', 'READ_MESSAGE_HISTORY'],
-                    }]).then(async _chat=>{
-                        await _chat.send(`${usr}, você esta conectado com outra pessoa  mande um oi \n digite sair para fechar o chat`)
+                    }]).then(async _chat => {
+                        await _chat.send({ content: `${usr}, chat criado`, embeds: [embedsMSGS.joinedChat]})
                         try {
-                            await _chat.guild.channels.cache.find(channel => channel.name === _chat.topic).send('uma segunda pessoa se conectou');
+                            await _chat.guild.channels.cache.find(channel => channel.name === _chat.topic).send({ embeds: [embedsMSGS.connected] });
                         } catch {
-                            await _chat.channel.send('um erro inesperado aconteceu')
+
                         }
                     })
 
@@ -82,7 +83,7 @@ async function createChannel(guld, usr) {
             }
         ],
     }).then((_chat) => {
-        _chat.send(`chat criado ${usr}, esperando uma segunda pessoa conectar... \n digite sair para fechar o chat`)
+        _chat.send({content: `${usr}, chat criado`, embeds: [embedsMSGS.embedNewChat]})
     })
 
     await guld.channels.create(queue.second, {
