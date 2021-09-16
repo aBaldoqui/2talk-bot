@@ -56,7 +56,7 @@ const newTicket = async (reaction, usr) => {
             queue.second = Math.floor(Math.random() * 16777215).toString(16);
 
             const guld = reaction.message.channel.guild;
-            await createChannel(guld, usr).then();
+            await createChannel(guld, usr);
         }
 
 
@@ -89,7 +89,7 @@ async function createChannel(guld, usr) {
     await guld.channels.create(queue.second, {
         type: "GUILD_TEXT",
         topic: queue.first,
-        parent: guld.channels.cache.find(a => a.name === "salas"),
+        parent: await guld.channels.cache.find(a => a.name === "salas"),
         permissionOverwrites: [
             {
                 id: guld.roles.everyone,

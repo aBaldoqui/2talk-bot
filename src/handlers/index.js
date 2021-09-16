@@ -8,11 +8,11 @@ require('dotenv').config()
 
 const innit = async (client) => {
     await client.guilds.cache.map(async (a) => {
-        const chan = a.channels.cache.find(channel => channel.name === "ticket")
+        const chan = await a.channels.cache.find(channel => channel.name === "ticket")
         if (chan) {
             await chan.bulkDelete(100);//more than 100
             const _msg = await chan.send({embeds:[embedMessages.ticket]});
-            _msg.react('🎫')
+            await _msg.react('🎫')
         } else {
             console.log(`sem canal de ticket em ${a.name}`)
         }
@@ -31,8 +31,7 @@ const reactionHandler = async (reaction, usr) => {
 }
 
 const messageHandler = async (msg) => {
-    if (msg.author.bot) return;
-    const lobby = await msg.channel.guild.channels.cache.find(channel => channel.name === "salas")
+    if (msg.author.bot || usr.system) return;
 
     if (msg.content === "clear") {
         if(msg.author.id !== "376165182126161931" && msg.author.id !== "840005128744075284") return;
@@ -42,8 +41,12 @@ const messageHandler = async (msg) => {
         })
     };
 
+    const lobby = await msg.channel.guild.channels.cache.find(channel => channel.name === "salas")
+
     if (msg.channel.parentId !== lobby.id) return;
     if (msg.channel.type !== 'GUILD_TEXT') return;
+
+    //if(msg.content === "sair")
 
     if (msg.content === "") return;
 
