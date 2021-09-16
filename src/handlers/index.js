@@ -1,6 +1,6 @@
 const { Message } = require('discord.js')
 
-const {newTicket, embedMessages, exit} =require('../tools/index')
+const { newTicket, embedMessages, exit } = require('../tools/index')
 
 require('dotenv').config()
 
@@ -11,7 +11,7 @@ const innit = async (client) => {
         const chan = await a.channels.cache.find(channel => channel.name === "ticket")
         if (chan) {
             await chan.bulkDelete(100);//more than 100
-            const _msg = await chan.send({embeds:[embedMessages.ticket]});
+            const _msg = await chan.send({ embeds: [embedMessages.ticket] });
             await _msg.react('🎫')
         } else {
             console.log(`sem canal de ticket em ${a.name}`)
@@ -27,21 +27,24 @@ const innit = async (client) => {
 const reactionHandler = async (reaction, usr) => {
     if (usr.bot || usr.system) return;
     if (reaction.message.author.id !== '878712715839946822' || reaction.message.embeds[0].title !== 'pegue seu ticket aqui') return;
-    await newTicket(reaction,usr);
+    await newTicket(reaction, usr);
 }
 
 const messageHandler = async (msg) => {
     if (msg.author.bot) return;
 
+
+    const lobby = await msg.channel.guild.channels.cache.find(channel => channel.name === "salas")
+
     if (msg.content === "clear") {
-        if(msg.author.id !== "376165182126161931" && msg.author.id !== "840005128744075284") return;
+        if (msg.author.id !== "376165182126161931" && msg.author.id !== "840005128744075284") return;
         await msg.delete()
         await lobby.guild.channels.cache.map(async (a) => {
             if (a.parentId == lobby.id) await a.delete()
         })
     };
 
-    const lobby = await msg.channel.guild.channels.cache.find(channel => channel.name === "salas")
+
 
     if (msg.channel.parentId !== lobby.id) return;
     if (msg.channel.type !== 'GUILD_TEXT') return;
