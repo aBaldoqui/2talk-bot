@@ -5,7 +5,7 @@ const {exitMsg} = require('./embedMsgs')
 const exit = async (msg)=>{
     await msg.channel.send({embeds: [exitMsg]})
 
-    msg.channel.permissionOverwrites.set([
+    await msg.channel.permissionOverwrites.set([
     {
         id : msg.author.id,
         deny: ['SEND_MESSAGES'],
