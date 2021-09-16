@@ -1,6 +1,6 @@
 const { Message } = require('discord.js')
 
-const {newTicket} = require('../tools/queue')
+const {newTicket, embedMessages} =require('../tools/index')
 
 require('dotenv').config()
 
