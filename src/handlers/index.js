@@ -26,7 +26,7 @@ const innit = async (client) => {
 
 const reactionHandler = async (reaction, usr) => {
     if (usr.bot || usr.system) return;
-    if (reaction.message.author.id !== '878712715839946822' || reaction.message.content !== 'pegue seu ticket aqui') return;
+    if (reaction.message.author.id !== '878712715839946822' || reaction.message.embeds[0].title !== 'pegue seu ticket aqui') return;
     await newTicket(reaction,usr);
 }
 
