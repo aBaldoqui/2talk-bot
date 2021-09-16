@@ -48,9 +48,9 @@ const messageHandler = async (msg) => {
     if (msg.content === "") return;
 
     try {
-        await msg.channel.guild.channels.cache.find(channel => channel.name === msg.channel.topic).send({embeds:[embedMessages.chatMessage.setDescription(msg.content)]});
+        await msg.channel.guild.channels.cache.find(channel => channel.name === msg.channel.topic).send(`estranho: ${msg.content}`);
     } catch {
-        msg.channel.send('um erro inesperado aconteceu')
+
     }
 }
 
