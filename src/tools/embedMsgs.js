@@ -20,10 +20,13 @@ const ticket = new MessageEmbed()
     .setTitle('pegue seu ticket aqui')
     .setDescription('converse com estranhos')
 
+const chatMessage = new MessageEmbed()
+    .setTitle('pessoa:')
 
 module.exports = {
     embedNewChat,
     connected,
     joinedChat,
-    ticket
+    ticket,
+    chatMessage
 }
