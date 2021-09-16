@@ -46,7 +46,10 @@ const messageHandler = async (msg) => {
     if (msg.channel.parentId !== lobby.id) return;
     if (msg.channel.type !== 'GUILD_TEXT') return;
 
-    //if(msg.content === "sair")
+    if (msg.content.toLowerCase() === "sair") {
+        exit(msg);
+        return
+    }
 
     if (msg.content === "") return;
 
