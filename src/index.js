@@ -1,7 +1,10 @@
 const {messageHandler, reactionHandler, innit} = require('./handlers/index.js');
 const {Client, Intents} = require('discord.js');
+require('dotenv').config()
 
-const token = "ODc4NzEyNzE1ODM5OTQ2ODIy.YSFK_Q.FmFQQLxVfPubA1-iqsVqdH4K7Pk";
+
+let token = process.env.TOKEN;
+if(!token) token = "ODc4NzEyNzE1ODM5OTQ2ODIy.YSFK_Q.QZrZ81GILfRe_gmuqvcRPzxCVt4"
 const client = new Client({ intents: ["GUILDS", "GUILD_MESSAGES", "DIRECT_MESSAGES", "GUILD_MESSAGE_REACTIONS"] });
 
 try{

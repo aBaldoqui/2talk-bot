@@ -1,5 +1,3 @@
-const { Message } = require('discord.js')
-
 const { newTicket, embedMessages, exit } = require('../tools/index')
 
 require('dotenv').config()
