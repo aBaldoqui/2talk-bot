@@ -25,8 +25,13 @@ const chatMessage = new MessageEmbed()
 
 const exitMsg = new MessageEmbed()
     .setColor('RED')
-    .setTitle('chat finalizado')
-    .setDescription('saindo do chat...')
+    .setTitle('disconecting')
+    .setDescription('You have disconnected.')
+
+const StrangerDisconnected= new MessageEmbed()
+    .setColor('RED')
+    .setTitle('disconecting')
+    .setDescription('stranger has disconnected')
 
 module.exports = {
     embedNewChat,
@@ -34,5 +39,6 @@ module.exports = {
     joinedChat,
     ticket,
     chatMessage,
-    exitMsg
+    exitMsg,
+    StrangerDisconnected
 }

@@ -1,18 +1,26 @@
-const {messageHandler, reactionHandler, innit} = require('./handlers/index.js');
-const {Client, Intents} = require('discord.js');
+const { messageHandler, reactionHandler, innit, interactionHandler } = require('./handlers/index.js');
+const { Client, Intents } = require('discord.js');
 
+let token = ""
 
-const token = "ODc4NzEyNzE1ODM5OTQ2ODIy.YSFK_Q.QZrZ81GILfRe_gmuqvcRPzxCVt4";
+if (process.env.TOKEN) {
+    token = process.env.TOKEN;
+} else {
+    token = "ODc4NzEyNzE1ODM5OTQ2ODIy.YSFK_Q.QZrZ81GILfRe_gmuqvcRPzxCVt4";
+}
+
 const client = new Client({ intents: ["GUILDS", "GUILD_MESSAGES", "DIRECT_MESSAGES", "GUILD_MESSAGE_REACTIONS"] });
 
-try{
+try {
     client.once('ready', innit);
 
     client.on('messageReactionAdd', reactionHandler)
-    
+
     client.on('messageCreate', messageHandler)
-    
+
+    client.on('interactionCreate', interactionHandler)
+
     client.login(token);
-}catch(err){
+} catch (err) {
     console.log(err)
 }

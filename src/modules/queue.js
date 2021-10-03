@@ -1,5 +1,5 @@
-const { Message } = require('discord.js')
 const embedsMSGS = require('./embedMsgs')
+const {inativeChat} = require('./general')
 
 let isLocked = null;
 
@@ -39,6 +39,7 @@ const newTicket = async (reaction, usr) => {
                         await _chat.send({ content: `${usr}, chat criado`, embeds: [embedsMSGS.joinedChat]})
                         try {
                             await _chat.guild.channels.cache.find(channel => channel.name === _chat.topic).send({ embeds: [embedsMSGS.connected] });
+                            
                         } catch {
 
                         }
@@ -71,7 +72,7 @@ async function createChannel(guld, usr) {
     await guld.channels.create(queue.first, {
         type: "GUILD_TEXT",
         topic: queue.second,
-        parent: await guld.channels.cache.find(a => a.name === "salas"),
+        parent: await guld.channels.cache.find(a => a.name === "rf lobby"),
         permissionOverwrites: [
             {
                 id: guld.roles.everyone,
@@ -82,21 +83,24 @@ async function createChannel(guld, usr) {
                 allow: ['VIEW_CHANNEL', 'SEND_MESSAGES', 'READ_MESSAGE_HISTORY'],
             }
         ],
-    }).then((_chat) => {
-        _chat.send({content: `${usr}, chat criado`, embeds: [embedsMSGS.embedNewChat]})
+    }).then(async (_chat) => {
+        await _chat.send({content: `${usr}, chat criado`, embeds: [embedsMSGS.embedNewChat]})
+
+        await inativeChat(_chat)
     })
 
     await guld.channels.create(queue.second, {
         type: "GUILD_TEXT",
         topic: queue.first,
-        parent: await guld.channels.cache.find(a => a.name === "salas"),
+        parent: await guld.channels.cache.find(a => a.name === "rf lobby"),
         permissionOverwrites: [
             {
                 id: guld.roles.everyone,
                 deny: ['VIEW_CHANNEL', 'SEND_MESSAGES', 'READ_MESSAGE_HISTORY']
             },
         ],
-    }).then(() => {
+    }).then(async (_chat) => {
+        await inativeChat(_chat)
         isLocked = false;
         fifo.shift()
     })
