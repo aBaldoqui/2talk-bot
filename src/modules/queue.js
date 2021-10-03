@@ -72,7 +72,7 @@ async function createChannel(guld, usr) {
     await guld.channels.create(queue.first, {
         type: "GUILD_TEXT",
         topic: queue.second,
-        parent: await guld.channels.cache.find(a => a.name === "rf lobby"),
+        parent: await guld.channels.cache.find(a => a.name === "rp lobby"),
         permissionOverwrites: [
             {
                 id: guld.roles.everyone,
@@ -92,7 +92,7 @@ async function createChannel(guld, usr) {
     await guld.channels.create(queue.second, {
         type: "GUILD_TEXT",
         topic: queue.first,
-        parent: await guld.channels.cache.find(a => a.name === "rf lobby"),
+        parent: await guld.channels.cache.find(a => a.name === "rp lobby"),
         permissionOverwrites: [
             {
                 id: guld.roles.everyone,

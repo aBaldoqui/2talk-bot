@@ -30,7 +30,7 @@ const messageHandler = async (msg) => {
 
     const { content } = msg;
 
-    const lobby = await msg.channel.guild.channels.cache.find(channel => channel.name === "rf lobby")
+    const lobby = await msg.channel.guild.channels.cache.find(channel => channel.name === "rp lobby")
 
     if (!lobby) return;
 
@@ -66,8 +66,8 @@ const interactionHandler = async (interaction) => {
 
     if (commandName === 'setup') {
 
-        const ticketChan = await findChannel(guild, "rf-ticket")
-        const lobbyChan = await findChannel(guild, "rf lobby")
+        const ticketChan = await findChannel(guild, "rp-ticket")
+        const lobbyChan = await findChannel(guild, "rp lobby")
 
         if (ticketChan && lobbyChan) {
             await interaction.reply(`alredy seted ${ticketChan} and lobby`);

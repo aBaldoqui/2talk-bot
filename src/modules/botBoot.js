@@ -3,8 +3,8 @@ const { ticketMsger, inativeChat } = require('./general')
 const botBoot = async (client) => {
 
     await client.guilds.cache.map(async (guilds) => {
-        const ticketChan = await guilds.channels.cache.find(channel => channel.name === "rf-ticket")
-        const lobby = await guilds.channels.cache.find(channel => channel.name === "rf lobby")
+        const ticketChan = await guilds.channels.cache.find(channel => channel.name === "rp-ticket")
+        const lobby = await guilds.channels.cache.find(channel => channel.name === "rp lobby")
         
         if(lobby){
             await guilds.channels.cache.map(async chan => {
