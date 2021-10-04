@@ -36,7 +36,7 @@ const newTicket = async (reaction, usr) => {
                         id: _id,
                         allow: ['VIEW_CHANNEL', 'SEND_MESSAGES', 'READ_MESSAGE_HISTORY'],
                     }]).then(async _chat => {
-                        await _chat.send({ content: `${usr}, chat criado`, embeds: [embedsMSGS.joinedChat]})
+                        await _chat.send({ content: `${usr}, chat created`, embeds: [embedsMSGS.joinedChat]})
                         try {
                             await _chat.guild.channels.cache.find(channel => channel.name === _chat.topic).send({ embeds: [embedsMSGS.connected] });
                             
@@ -84,7 +84,7 @@ async function createChannel(guld, usr) {
             }
         ],
     }).then(async (_chat) => {
-        await _chat.send({content: `${usr}, chat criado`, embeds: [embedsMSGS.embedNewChat]})
+        await _chat.send({content: `${usr}, chat created`, embeds: [embedsMSGS.embedNewChat]})
 
         await inativeChat(_chat)
     })

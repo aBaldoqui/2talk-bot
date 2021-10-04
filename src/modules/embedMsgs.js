@@ -3,25 +3,22 @@ const { MessageEmbed } = require('discord.js')
 
 const embedNewChat = new MessageEmbed()
     .setColor('#0xc5fb00')
-    .setTitle('esperando uma segunda pessoa conectar...')
-    .setDescription('digite: "sair" para fechar este chat');
+    .setTitle('Looking for someone you can chat with...')
+    .setDescription('type "exit" to close chat');
 
 const connected = new MessageEmbed()
     .setColor('00FF00')
-    .setTitle('uma segunda pessoa se conectou, mande um oi');
+    .setTitle("You're now chatting with a random stranger.");
 
 const joinedChat = new MessageEmbed()
     .setColor('00FF00')
-    .setTitle('você esta conectado com outra pessoa, mande um oi')
-    .setDescription('digite: "sair" para fechar este chat');
+    .setTitle("You're now chatting with a random stranger.")
+    .setDescription('type "exit" to close chat');
 
 const ticket = new MessageEmbed()
     .setColor('#ffff00')
-    .setTitle('pegue seu ticket aqui')
-    .setDescription('converse com estranhos')
-
-const chatMessage = new MessageEmbed()
-    .setTitle('pessoa:')
+    .setTitle('react with: 🎫 to create a ticket')
+    .setDescription('talk to strangers')
 
 const exitMsg = new MessageEmbed()
     .setColor('RED')
@@ -38,7 +35,6 @@ module.exports = {
     connected,
     joinedChat,
     ticket,
-    chatMessage,
     exitMsg,
     StrangerDisconnected
 }

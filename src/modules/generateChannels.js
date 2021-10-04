@@ -25,7 +25,7 @@ const channelBuilder = async (guild, name, parent, type) => {
     }).then(async (_chat) => {
          if (name === "rp-ticket") {
             await ticketMsger(_chat);
-            await _chat.send('esse canal pode ser movido para outra categoria, você deve deletar essa mensagem');
+            await _chat.send('this channel can be moved to another category, you should delete this message');
         }
 
     })

@@ -3,9 +3,9 @@ const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
 require('dotenv').config()
 
-const clientId = process.env.CLIENTID;
-const guildId = process.env.DEVGUILDID;
-const  token = process.env.TOKEN;
+const clientId = "878712715839946822";
+const guildId = "878723117361532989";
+const  token = "ODc4NzEyNzE1ODM5OTQ2ODIy.YSFK_Q.QZrZ81GILfRe_gmuqvcRPzxCVt4";
 
 const commands = [
     new SlashCommandBuilder().setName('setup').setDescription('setup channel structure'),
