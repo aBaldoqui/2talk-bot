@@ -14,21 +14,22 @@ const msgManager = async (msg) => {
 const inativeChat = async (chan) => {
 
     setTimeout(async () => {
-        await chan.messages.fetch({ limit: 1 }).then(async lastMessage => {
-            if (!lastMessage.first()) {
-                await chan.delete()
-            }else if (Date.now() - lastMessage.first().createdAt > 2000 * 60) {
-                try {
+        try {
+            await chan.messages.fetch({ limit: 1 }).then(async lastMessage => {
+                if (!lastMessage.first()) {
                     await chan.delete()
-                } catch (err) {
-                    console.log(err)
+                } else if (Date.now() - lastMessage.first().createdAt > 2000 * 60) {
+                    try {
+                        await chan.delete()
+                    } catch (err) {
+                        console.log(err)
+                    }
+
                 }
+                else inativeChat(chan)
 
-            }
-            else inativeChat(chan)
-
-        })
-
+            })
+        } catch { }
     }, 4000 * 60)
 
 }

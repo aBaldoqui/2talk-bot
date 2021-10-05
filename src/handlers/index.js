@@ -21,7 +21,7 @@ const innit = async (client) => {
 const reactionHandler = async (reaction, usr) => {
     if (usr.bot || usr.system) return;
     if (reaction.message.author.id !== botId || reaction.message.embeds[0].title !== 'react with: 🎫 to create a ticket') return;
-
+    console.log(reaction)
     await newTicket(reaction, usr);
 }
 
@@ -40,6 +40,7 @@ const messageHandler = async (msg) => {
         await lobby.guild.channels.cache.map(async (a) => {
             if (a.parentId == lobby.id) await a.delete()
         })
+        return
     };
 
     if (msg.channel.parentId !== lobby.id) return;
@@ -49,6 +50,7 @@ const messageHandler = async (msg) => {
 
     if (msgLowerCase === "sair" || msgLowerCase === "exit") {
         await exit(msg);
+        return
     }
 
     if (msg.content === "") return;
