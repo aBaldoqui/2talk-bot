@@ -59,9 +59,12 @@ const exit = async (msg) => {
 
 async function msgSender(msg, content) {
     try {
+        if (content.type){
+            await msg.channel.guild.channels.cache.find(channel => channel.name === msg.channel.topic).send({embeds: [content]});
+        }
         await msg.channel.guild.channels.cache.find(channel => channel.name === msg.channel.topic).send(content);
     } catch (err) {
-        console.log(`error sending :${msg}`)
+        console.log(`error sending :${msg, content}`)
     }
 }
 
