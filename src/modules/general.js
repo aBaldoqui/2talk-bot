@@ -2,9 +2,14 @@ const embedMessages = require('./embedMsgs')
 const { exitMsg } = require('./embedMsgs')
 
 const ticketMsger = async (ticketChan) => {
-    await ticketChan.bulkDelete(100, true);//more than 100
-    const _msg = await ticketChan.send({ embeds: [embedMessages.ticket] });
-    await _msg.react('🎫')
+    try{
+        await ticketChan.bulkDelete(100, true);//more than 100
+        const _msg = await ticketChan.send({ embeds: [embedMessages.ticket] });
+        await _msg.react('🎫')
+    }catch(err){
+        console.log(err)
+    }
+    
 }
 
 const msgManager = async (msg) => {

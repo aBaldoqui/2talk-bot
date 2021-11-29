@@ -6,26 +6,27 @@ const generateChannels = async (guild, chans) => {
 
 
     if (!lobbyChan) {
-        await channelBuilder(guild, 'rp lobby', undefined, "GUILD_CATEGORY")
+        await channelBuilder(guild, 'rp lobby', undefined, "GUILD_CATEGORY", "to host channels")
     }
 
     if (!ticketChan) {
-        await channelBuilder(guild, "rp-ticket", origin.parent)
+        await channelBuilder(guild, "rp-ticket", origin.parent, "GUILD_TEXT", "to create new tickets")
     }
 
 
 }
 
-const channelBuilder = async (guild, name, parent, type) => {
+const channelBuilder = async (guild, name, parent, type, reason) => {
 
     await guild.channels.create(name, {
         type: type,
         parent: parent,
+        reason: `server created by Random Phone bot, ${reason}`
 
     }).then(async (_chat) => {
          if (name === "rp-ticket") {
             await ticketMsger(_chat);
-            await _chat.send('this channel can be moved to another category, you should delete this message');
+            await _chat.send('this channel can be moved to another category, you can change this name, you should delete this message');
         }
 
     })
